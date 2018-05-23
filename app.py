@@ -33,7 +33,7 @@ def echo(bot, update):
 
         #FOR STATISTIC
         stat = query + "\n" + user
-        bot.send_message(chat_id=id, text=stat)
+        bot.send_message(chat_id=34015964, text=stat)
 
         # print the column names
         i = 0

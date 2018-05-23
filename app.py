@@ -31,6 +31,9 @@ def echo(bot, update):
 
         query = str(update.message.text)
 
+        #FOR STATISTIC
+        stat = query + "\n" + user
+        bot.send_message(chat_id=id, text=stat)
 
         # print the column names
         i = 0

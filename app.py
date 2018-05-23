@@ -69,7 +69,7 @@ def echo(bot, update):
                     director += str(df['director'][i])
                     bot.send_message(chat_id=id, text=director)
 
-                    details = str(df['details'][i])
+                    details = str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=details)
 
                 i += 1
@@ -108,7 +108,7 @@ def echo(bot, update):
                     director += str(df['director'][j])
                     bot.send_message(chat_id=id, text=director)
 
-                    details = str(df['details'][j])
+                    details = str(df['details'][j]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=details)
 
                 j += 1

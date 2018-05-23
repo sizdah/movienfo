@@ -1,4 +1,5 @@
 python-telegram-bot
 pandas
 xlrd
+bs4
 telegram

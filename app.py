@@ -56,7 +56,8 @@ def echo(bot, update):
 
                     year =" سال "
                     year+="\n"
-                    year += str(df['year'][i])
+
+                    year += str(int(df['year'][i]))
                     bot.send_message(chat_id=id, text=year)
 
                     cast=" بازیگران "
@@ -95,7 +96,7 @@ def echo(bot, update):
 
                     year = " سال "
                     year += "\n"
-                    year += str(df['year'][j])
+                    year += str(int(df['year'][j]))
                     bot.send_message(chat_id=id, text=year)
 
                     cast = " بازیگران "

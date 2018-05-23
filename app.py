@@ -162,12 +162,12 @@ def echo(bot, update):
              bot.send_message(chat_id=id, text=" سعی برای دریافت اطلاعات از منبع بیرونی ")
              lasthope = 0
              for item in data:
-                lasthope+=1
-                title = item.find_next("h2").text
-                cont = item.find_next("p").text
-                bot.send_message(chat_id=id, text=title)
-                bot.send_message(chat_id=id, text=cont)
-
+                    lasthope+=1
+                    title = item.find_next("h2").text
+                    cont = item.find_next("p").text
+                    bot.send_message(chat_id=id, text=title)
+                    bot.send_message(chat_id=id, text=cont)
+             bot.send_message(chat_id=id, text=cinema)
             else:
              update.message.reply_text("موردی یافت نشد لینک زیر را چک کنید همچنین میتواند داستان فیلم و بازیگران آن را به انگلیسی بنویسید و جستجو را تکرار کنید تا از طریق لینک پایین حدس بهتری زده شود")
              x = query.replace(" ","+")

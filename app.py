@@ -3,7 +3,8 @@ from queue import Queue
 from threading import Thread
 from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
-
+from bs4 import BeautifulSoup
+import requests
 
 
 
@@ -95,7 +96,7 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=engt)
                     q=str(df['title'][j]) # for searching the english name
 
-                    
+
                     farsi = "عنوان فارسی"
                     farsi += "\n"
                     farsi += str(df['titlef'][j])
@@ -148,10 +149,30 @@ def echo(bot, update):
                 brows2 = "https://www.rottentomatoes.com/search/?search=" + link2
                 bot.send_message(chat_id=id, text=brows2)
         if ecount+fcount==0:
-            update.message.reply_text("موردی یافت نشد لینک زیر را چک کنید همچنین میتواند داستان فیلم و بازیگران آن را به انگلیسی بنویسید و جستجو را تکرار کنید تا از طریق لینک پایین حدس بهتری زده شود")
-            x = query.replace(" ","+")
-            ai = "https://www.whatismymovie.com/results?text="+x
-            bot.send_message(chat_id=id, text=ai)
+
+            k = query.replace(" ","+")
+            cinema = "https://30nama.ws/?s="+k
+            r = requests.get(cinema)
+            c = r.content
+
+            soup = BeautifulSoup(c, "html.parser")
+
+            data = soup.find_all("article", {"class": "post"})
+            if data:
+             bot.send_message(chat_id=id, text=" سعی برای دریافت اطلاعات از منبع بیرونی ")
+             lasthope = 0
+             for item in data:
+                lasthope+=1
+                title = item.find_next("h2").text
+                cont = item.find_next("p").text
+                bot.send_message(chat_id=id, text=title)
+                bot.send_message(chat_id=id, text=cont)
+
+            else:
+             update.message.reply_text("موردی یافت نشد لینک زیر را چک کنید همچنین میتواند داستان فیلم و بازیگران آن را به انگلیسی بنویسید و جستجو را تکرار کنید تا از طریق لینک پایین حدس بهتری زده شود")
+             x = query.replace(" ","+")
+             ai = "https://www.whatismymovie.com/results?text="+x
+             bot.send_message(chat_id=id, text=ai)
 
 
     except:

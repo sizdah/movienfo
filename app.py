@@ -32,7 +32,6 @@ def board(bot, update):
 
         df = pandas.read_excel('base.xlsx')
         # print the column names
-        query = str(input("please enter the title: "))
         i = 0
         ecount = 0
         fcount = 0

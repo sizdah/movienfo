@@ -12,31 +12,30 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 TOKEN = '569768947:AAGeaItAKWl3JolhuMdMhdcG4yRJCttFtZ8'
 
+df = pandas.read_excel('base.xlsx')
 
 def start(bot, update):
     update.message.reply_text('با نوشتن عنوان فارسی یا انگلیسی فیلم میتوانید جستجو کنید')
 
-def board(bot, update):
-
-    bot = Bot(TOKEN)
-    id = update.message.from_user.id
-    id = int(id)
-    #########
-    user = update.message.from_user
-    user = str(user)
-    ###########
-
-
-    try:
+def echo(bot, update):
+        global df
+        bot = Bot(TOKEN)
+        id = update.message.from_user.id
+        id = int(id)
+        #########
+        user = update.message.from_user
+        user = str(user)
+        ###########
 
 
-        df = pandas.read_excel('base.xlsx')
+
+
         # print the column names
         i = 0
         ecount = 0
         fcount = 0
-        try:
-            for item in df['title']:
+
+        for item in df['title']:
                 if query.lower() in str(item).lower():
                     ecount += 1
                     farsi = str(df['titlef'][i]) + " عنوان: "
@@ -62,37 +61,34 @@ def board(bot, update):
                     bot.send_message(chat_id=id, text=details)
 
                 i += 1
-        except:
-            pass
-        try:
-            j = 0
-            for item in df['titlef']:
+
+        j = 0
+        for item in df['titlef']:
                 if query in str(item):
                     fcount += 1
-                    eng = str(df['title'][i]) + " عنوان: "
+                    eng = str(df['title'][j]) + " عنوان: "
                     bot.send_message(chat_id=id, text=eng)
 
-                    country = str(df['country'][i]) + " کشور: "
+                    country = str(df['country'][j]) + " کشور: "
                     bot.send_message(chat_id=id, text=country)
 
-                    genre = str(df['genre'][i]) + " سبک: "
+                    genre = str(df['genre'][j]) + " سبک: "
                     bot.send_message(chat_id=id, text=genre)
 
-                    year = str(df['year'][i]) + " سال: "
+                    year = str(df['year'][j]) + " سال: "
                     bot.send_message(chat_id=id, text=year)
 
-                    cast = str(df['cast'][i]) + " بازیگران: "
+                    cast = str(df['cast'][j]) + " بازیگران: "
                     bot.send_message(chat_id=id, text=cast)
 
-                    director = str(df['director'][i]) + " کارگردان "
+                    director = str(df['director'][j]) + " کارگردان "
                     bot.send_message(chat_id=id, text=director)
 
-                    details = str(df['details'][i])
+                    details = str(df['details'][j])
                     bot.send_message(chat_id=id, text=details)
 
                 j += 1
-        except:
-            pass
+
         if ecount > 0:
             link = query.replace(" ", "+")
             brows = "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + link + "&s=all"
@@ -106,10 +102,6 @@ def board(bot, update):
             x = query.replace(" ","+")
             ai = "https://www.whatismymovie.com/results?text="+x
             bot.send_message(chat_id=id, text=ai)
-
-
-    except:
-        print("failed")
 
 
 
@@ -135,7 +127,7 @@ def setup(webhook_url=None):
         dp.add_handler(CommandHandler("help", start))
 
         # on noncommand i.e message - echo the message on Telegram
-        dp.add_handler(MessageHandler(Filters.text, board))
+        dp.add_handler(MessageHandler(Filters.text, echo))
 
         # log all errors
         dp.add_error_handler(error)

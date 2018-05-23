@@ -39,7 +39,14 @@ def echo(bot, update):
         for item in df['title']:
                 if query.lower() in str(item).lower():
                     ecount += 1
-                    farsi = "عنوان"
+
+                    engt = "عنوان انگلیسی"
+                    engt += "\n"
+                    engt += str(df['title'][i])
+                    bot.send_message(chat_id=id, text=engt)
+
+
+                    farsi = "عنوان فارسی"
                     farsi+="\n"
                     farsi+= str(df['titlef'][i])
                     bot.send_message(chat_id=id, text=farsi)
@@ -73,13 +80,23 @@ def echo(bot, update):
                     details = str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=details)
 
+                    update.message.reply_text('***')
+
                 i += 1
 
         j = 0
         for item in df['titlef']:
                 if query in str(item):
                     fcount += 1
-                    farsi = "عنوان"
+
+                    engt = "عنوان انگلیسی"
+                    engt += "\n"
+                    engt += str(df['title'][j])
+                    bot.send_message(chat_id=id, text=engt)
+                    q=str(df['title'][j]) # for searching the english name
+
+                    
+                    farsi = "عنوان فارسی"
                     farsi += "\n"
                     farsi += str(df['titlef'][j])
                     bot.send_message(chat_id=id, text=farsi)
@@ -111,6 +128,7 @@ def echo(bot, update):
 
                     details = str(df['details'][j]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=details)
+                    update.message.reply_text('***')
 
                 j += 1
 
@@ -121,7 +139,14 @@ def echo(bot, update):
             link2 = query.replace(" ","+")
             brows2 = "https://www.rottentomatoes.com/search/?search="+link2
             bot.send_message(chat_id=id, text=brows2)
-
+        else:
+            if fcount>0:
+                link = q.replace(" ", "+")
+                brows = "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + link + "&s=all"
+                bot.send_message(chat_id=id, text=brows)
+                link2 = q.replace(" ", "+")
+                brows2 = "https://www.rottentomatoes.com/search/?search=" + link2
+                bot.send_message(chat_id=id, text=brows2)
         if ecount+fcount==0:
             update.message.reply_text("موردی یافت نشد لینک زیر را چک کنید همچنین میتواند داستان فیلم و بازیگران آن را به انگلیسی بنویسید و جستجو را تکرار کنید تا از طریق لینک پایین حدس بهتری زده شود")
             x = query.replace(" ","+")

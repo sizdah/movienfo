@@ -27,7 +27,7 @@ def echo(bot, update):
         user = str(user)
         ###########
 
-
+        query = str(update.message.text)
 
 
         # print the column names

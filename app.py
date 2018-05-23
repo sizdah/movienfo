@@ -18,6 +18,7 @@ def start(bot, update):
     update.message.reply_text('با نوشتن عنوان فارسی یا انگلیسی فیلم میتوانید جستجو کنید')
 
 def echo(bot, update):
+    try:
         global df
         bot = Bot(TOKEN)
         id = update.message.from_user.id
@@ -38,23 +39,34 @@ def echo(bot, update):
         for item in df['title']:
                 if query.lower() in str(item).lower():
                     ecount += 1
-                    farsi = str(df['titlef'][i]) + " عنوان: "
+                    farsi = "عنوان"
+                    farsi+="\n"
+                    farsi+= str(df['titlef'][i])
                     bot.send_message(chat_id=id, text=farsi)
 
-                    country = str(df['country'][i]) + " کشور: "
+                    country=" کشور "
+                    country+="\n"
+                    country += str(df['country'][i])
                     bot.send_message(chat_id=id, text=country)
 
-                    genre = str(df['genre'][i]) + " سبک: "
+                    genre= " ژانر "
+                    genre+="\n"
+                    genre += str(df['genre'][i])
                     bot.send_message(chat_id=id, text=genre)
 
-                    year = str(df['year'][i]) + " سال: "
+                    year =" سال "
+                    year+="\n"
+                    year += str(df['year'][i])
                     bot.send_message(chat_id=id, text=year)
 
-                    cast = str(df['cast'][i]) + " بازیگران: "
+                    cast=" بازیگران "
+                    cast+="\n"
+                    cast += str(df['cast'][i])
                     bot.send_message(chat_id=id, text=cast)
 
-
-                    director = str(df['director'][i]) + " کارگردان "
+                    director=" کارگردان "
+                    director+="\n"
+                    director += str(df['director'][i])
                     bot.send_message(chat_id=id, text=director)
 
                     details = str(df['details'][i])
@@ -66,22 +78,34 @@ def echo(bot, update):
         for item in df['titlef']:
                 if query in str(item):
                     fcount += 1
-                    eng = str(df['title'][j]) + " عنوان: "
-                    bot.send_message(chat_id=id, text=eng)
+                    farsi = "عنوان"
+                    farsi += "\n"
+                    farsi += str(df['titlef'][j])
+                    bot.send_message(chat_id=id, text=farsi)
 
-                    country = str(df['country'][j]) + " کشور: "
+                    country = " کشور "
+                    country += "\n"
+                    country += str(df['country'][j])
                     bot.send_message(chat_id=id, text=country)
 
-                    genre = str(df['genre'][j]) + " سبک: "
+                    genre = " ژانر "
+                    genre += "\n"
+                    genre += str(df['genre'][j])
                     bot.send_message(chat_id=id, text=genre)
 
-                    year = str(df['year'][j]) + " سال: "
+                    year = " سال "
+                    year += "\n"
+                    year += str(df['year'][j])
                     bot.send_message(chat_id=id, text=year)
 
-                    cast = str(df['cast'][j]) + " بازیگران: "
+                    cast = " بازیگران "
+                    cast += "\n"
+                    cast += str(df['cast'][j])
                     bot.send_message(chat_id=id, text=cast)
 
-                    director = str(df['director'][j]) + " کارگردان "
+                    director = " کارگردان "
+                    director += "\n"
+                    director += str(df['director'][j])
                     bot.send_message(chat_id=id, text=director)
 
                     details = str(df['details'][j])
@@ -104,7 +128,8 @@ def echo(bot, update):
             bot.send_message(chat_id=id, text=ai)
 
 
-
+    except:
+        pass
 
 def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"' % (update, error))

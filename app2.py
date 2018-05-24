@@ -49,43 +49,42 @@ def echo(bot, update):
                     engt = "عنوان انگلیسی"
                     engt += "\n"
                     engt += str(df['title'][i])
-
-                    engt += "\n"
-
-                    engt += "عنوان فارسی"
-                    engt+="\n"
-                    engt+= str(df['titlef'][i])
-
-                    engt += "\n"
-
-                    engt+=" کشور "
-                    engt+="\n"
-                    engt += str(df['country'][i])
-                    engt += "\n"
-
-                    engt+= " ژانر "
-                    engt+="\n"
-                    engt += str(df['genre'][i])
-
-                    engt += "\n"
-
-                    engt +=" سال "
-                    engt +="\n"
-
-                    engt += str(int(df['year'][i]))
-                    engt += "\n"
-
-                    engt+=" بازیگران "
-                    engt+="\n"
-                    engt += str(df['cast'][i])
-
-                    engt+=" کارگردان "
-                    engt+="\n"
-                    engt += str(df['director'][i])
-                    engt += "\n\n"
-
-                    engt += str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=engt)
+
+
+                    farsi = "عنوان فارسی"
+                    farsi+="\n"
+                    farsi+= str(df['titlef'][i])
+                    bot.send_message(chat_id=id, text=farsi)
+
+                    country=" کشور "
+                    country+="\n"
+                    country += str(df['country'][i])
+                    bot.send_message(chat_id=id, text=country)
+
+                    genre= " ژانر "
+                    genre+="\n"
+                    genre += str(df['genre'][i])
+                    bot.send_message(chat_id=id, text=genre)
+
+                    year =" سال "
+                    year+="\n"
+
+                    year += str(int(df['year'][i]))
+                    bot.send_message(chat_id=id, text=year)
+
+                    cast=" بازیگران "
+                    cast+="\n"
+                    cast += str(df['cast'][i])
+                    bot.send_message(chat_id=id, text=cast)
+
+                    director=" کارگردان "
+                    director+="\n"
+                    director += str(df['director'][i])
+                    bot.send_message(chat_id=id, text=director)
+
+                    details = str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
+                    bot.send_message(chat_id=id, text=details)
 
                     update.message.reply_text('************')
 
@@ -99,50 +98,43 @@ def echo(bot, update):
                     engt = "عنوان انگلیسی"
                     engt += "\n"
                     engt += str(df['title'][j])
-
-                    engt += "\n"
-
-                    engt += "عنوان فارسی"
-                    engt += "\n"
-                    engt += str(df['titlef'][j])
-
-                    engt += "\n"
-
-                    engt += " کشور "
-                    engt += "\n"
-                    engt += str(df['country'][j])
-                    engt += "\n"
-
-                    engt += " ژانر "
-                    engt += "\n"
-                    engt += str(df['genre'][j])
-
-                    engt += "\n"
-
-                    engt += " سال "
-                    engt += "\n"
-
-                    engt += str(int(df['year'][j]))
-                    engt += "\n"
-
-                    engt += " بازیگران "
-                    engt += "\n"
-                    engt += str(df['cast'][j])
-
-                    engt += " کارگردان "
-                    engt += "\n"
-                    engt += str(df['director'][j])
-                    engt += "\n\n"
-
-                    engt += str(df['details'][j]).replace("(دوبله فارسی + صدای اصلی )", "").replace(
-                        "(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)", "").replace(
-                        "(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)", "").replace(
-                        "(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)", "").replace("(فقط دوبله فارسی)", "").replace(
-                        "(دوبله و زیرنویس فارسی + صدای اصلی)", "")
                     bot.send_message(chat_id=id, text=engt)
+                    q=str(df['title'][j]) # for searching the english name
 
+
+                    farsi = "عنوان فارسی"
+                    farsi += "\n"
+                    farsi += str(df['titlef'][j])
+                    bot.send_message(chat_id=id, text=farsi)
+
+                    country = " کشور "
+                    country += "\n"
+                    country += str(df['country'][j])
+                    bot.send_message(chat_id=id, text=country)
+
+                    genre = " ژانر "
+                    genre += "\n"
+                    genre += str(df['genre'][j])
+                    bot.send_message(chat_id=id, text=genre)
+
+                    year = " سال "
+                    year += "\n"
+                    year += str(int(df['year'][j]))
+                    bot.send_message(chat_id=id, text=year)
+
+                    cast = " بازیگران "
+                    cast += "\n"
+                    cast += str(df['cast'][j])
+                    bot.send_message(chat_id=id, text=cast)
+
+                    director = " کارگردان "
+                    director += "\n"
+                    director += str(df['director'][j])
+                    bot.send_message(chat_id=id, text=director)
+
+                    details = str(df['details'][j]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
+                    bot.send_message(chat_id=id, text=details)
                     update.message.reply_text('************')
-
 
                 j += 1
 
@@ -180,10 +172,8 @@ def echo(bot, update):
                     cont = item.find_next("p").text
                     pic = item.find_next('img', attrs={'src': re.compile("^https://")})
                     photo = (pic.get('src'))
-
-
-                    mes = title + "\n\n" + cont
-                    bot.send_message(chat_id=id, text=mes)
+                    bot.send_message(chat_id=id, text=title)
+                    bot.send_message(chat_id=id, text=cont)
                     bot.send_message(chat_id=id, text=photo)
 
    #                 f = open('temp.jpg', 'wb')

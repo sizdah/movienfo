@@ -5,7 +5,7 @@ from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
 from bs4 import BeautifulSoup
 import requests
-
+import re
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -84,7 +84,7 @@ def echo(bot, update):
                     details = str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=details)
 
-                    update.message.reply_text('***')
+                    update.message.reply_text(':movie_camera::cinema::movie_camera::cinema::movie_camera::cinema:')
 
                 i += 1
 
@@ -132,7 +132,7 @@ def echo(bot, update):
 
                     details = str(df['details'][j]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=details)
-                    update.message.reply_text('***')
+                    update.message.reply_text(':movie_camera::cinema::movie_camera::cinema::movie_camera::cinema:')
 
                 j += 1
 
@@ -162,14 +162,19 @@ def echo(bot, update):
 
             data = soup.find_all("article", {"class": "post"})
             if data:
-             bot.send_message(chat_id=id, text=" سعی برای دریافت اطلاعات از منبع بیرونی ")
+             bot.send_message(chat_id=id, text=":spider_web::spider_web::spider_web::spider_web::spider_web:")
+             bot.send_message(chat_id=id, text=" استفاده از اطلاعات منبع بیرونی: ")
              lasthope = 0
              for item in data:
                     lasthope+=1
                     title = item.find_next("h2").text
                     cont = item.find_next("p").text
+                    pic = item.find_next('img', attrs={'src': re.compile("^https://")})
+                    photo = (pic.get('src'))
                     bot.send_message(chat_id=id, text=title)
                     bot.send_message(chat_id=id, text=cont)
+                    bot.send_message(chat_id=id, text=photo)
+
              bot.send_message(chat_id=id, text=cinema)
             else:
              update.message.reply_text("موردی یافت نشد لینک زیر را چک کنید همچنین میتواند داستان فیلم و بازیگران آن را به انگلیسی بنویسید و جستجو را تکرار کنید تا از طریق لینک پایین حدس بهتری زده شود")

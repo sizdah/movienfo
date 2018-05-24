@@ -184,7 +184,7 @@ def echo(bot, update):
                     photo = (pic.get('src'))
 
 
-                    mes = title + "\n\n" + cont
+                    mes = str(title) + "\n\n" + str(cont)
                     bot.send_message(chat_id=id, text=mes)
                     bot.send_message(chat_id=id, text=photo)
 

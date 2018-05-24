@@ -46,40 +46,40 @@ def echo(bot, update):
                 if query.lower() in str(item).lower():
                     ecount += 1
 
-                    engt = "عنوان انگلیسی"
+                    engt = "عنوان انگلیسی:"
                     engt += "\n"
                     engt += str(df['title'][i])
 
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt += "عنوان فارسی"
+                    engt += "عنوان فارسی:"
                     engt+="\n"
                     engt+= str(df['titlef'][i])
 
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt+=" کشور "
+                    engt+=" کشور: "
                     engt+="\n"
                     engt += str(df['country'][i])
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt+= " ژانر "
+                    engt+= " ژانر: "
                     engt+="\n"
                     engt += str(df['genre'][i])
 
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt +=" سال "
+                    engt +=" سال: "
                     engt +="\n"
-
                     engt += str(int(df['year'][i]))
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt+=" بازیگران "
+                    engt+=" بازیگران: "
                     engt+="\n"
                     engt += str(df['cast'][i])
+                    engt += "\n\n"
 
-                    engt+=" کارگردان "
+                    engt+=" کارگردان: "
                     engt+="\n"
                     engt += str(df['director'][i])
                     engt += "\n\n"
@@ -96,40 +96,42 @@ def echo(bot, update):
                 if query in str(item):
                     fcount += 1
 
-                    engt = "عنوان انگلیسی"
+                    engt = "عنوان انگلیسی:"
                     engt += "\n"
                     engt += str(df['title'][j])
 
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt += "عنوان فارسی"
+                    engt += "عنوان فارسی:"
                     engt += "\n"
                     engt += str(df['titlef'][j])
 
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt += " کشور "
+                    engt += " کشور: "
                     engt += "\n"
                     engt += str(df['country'][j])
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt += " ژانر "
+                    engt += " ژانر: "
                     engt += "\n"
                     engt += str(df['genre'][j])
 
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt += " سال "
+                    engt += " سال: "
                     engt += "\n"
 
                     engt += str(int(df['year'][j]))
-                    engt += "\n"
+                    engt += "\n\n"
 
-                    engt += " بازیگران "
+                    engt += " بازیگران: "
                     engt += "\n"
                     engt += str(df['cast'][j])
 
-                    engt += " کارگردان "
+                    engt += "\n\n"
+
+                    engt += " کارگردان: "
                     engt += "\n"
                     engt += str(df['director'][j])
                     engt += "\n\n"

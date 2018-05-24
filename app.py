@@ -5,7 +5,7 @@ from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
 from bs4 import BeautifulSoup
 import requests
-import re,os
+import re
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -172,11 +172,13 @@ def echo(bot, update):
                     photo = (pic.get('src'))
                     bot.send_message(chat_id=id, text=title)
                     bot.send_message(chat_id=id, text=cont)
-                    f = open('temp.jpg', 'wb')
-                    f.write(requests.get(photo).content)
-                    f.close()
-                    bot.send_photo(chat_id=id, text="temp.jpg")
-                    os.remove("temp.jpg")
+                    bot.send_message(chat_id=id, text=photo)
+
+   #                 f = open('temp.jpg', 'wb')
+    #                f.write(requests.get(photo).content)
+   #                 f.close()
+    #                bot.send_photo(chat_id=id, text="temp.jpg")
+    #                os.remove("temp.jpg")
 
              bot.send_message(chat_id=id, text=cinema)
             else:

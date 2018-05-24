@@ -209,7 +209,7 @@ def echo(bot, update):
                  "online", "").replace("movies", "")
 
 
-             if sug != '':
+             if sug != '' and sug != query:
                  update.message.reply_text("شاید منظور شما عبارت زیر بوده")
                  update.message.reply_text(sug)
 

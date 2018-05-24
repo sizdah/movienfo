@@ -5,7 +5,9 @@ from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
 from bs4 import BeautifulSoup
 import requests
-import re
+import re,io
+from lxml import etree
+
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -182,6 +184,39 @@ def echo(bot, update):
 
              bot.send_message(chat_id=id, text=cinema)
             else:
+
+             #####
+             try:
+                 r = requests.get("https://www.google.com/complete/search?output=toolbar&q=" + str(query))
+                 c = r.content
+                 soup = BeautifulSoup(c, "html.parser").prettify()
+
+                 f = io.open('tempo.xml', mode="w+", encoding="utf-8")
+                 f.write(str(soup))
+                 f.close()
+             except:
+                 pass
+
+             doc = etree.parse("tempo.xml")
+             root = doc.getroot()
+             a = ''
+             for movie in root.iter('suggestion'):
+                 a = movie.attrib['data']
+                 break
+             sug = str(a)
+             sug = sug.replace("movie", "").replace("wikipedia", "").replace("download", "").replace("streaming",
+                                                                                                     "").replace(
+                 "online", "").replace("movies", "")
+
+
+             if sug != '':
+                 update.message.reply_text("شاید منظور شما عبارت زیر بوده")
+                 update.message.reply_text(sug)
+
+             #####
+
+
+
              update.message.reply_text("موردی یافت نشد لینک زیر را چک کنید همچنین میتواند داستان فیلم و بازیگران آن را به انگلیسی بنویسید و جستجو را تکرار کنید تا از طریق لینک پایین حدس بهتری زده شود")
              x = query.replace(" ","+")
              ai = "https://www.whatismymovie.com/results?text="+x

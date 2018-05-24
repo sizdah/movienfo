@@ -1,6 +1,7 @@
 python-telegram-bot
 pandas
 xlrd
+lxml
 bs4
 requests
 telegram

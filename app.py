@@ -103,7 +103,12 @@ def echo(bot, update):
                     engt += str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=engt)
 
-                    bot.send_message(chat_id=id, text=youtube(str(df['title'])))
+                    info = "در صورت تمایل با فروارد این تریلر به ربات getmediabot@ میتوانید این ویدئو را دانلود کنید "
+                    info += "\n"
+                    info += youtube(str(df['title'][i]))
+                    bot.send_message(chat_id=id, text=info)
+
+                    bot.send_message(chat_id=id, text=info)
                     update.message.reply_text('************')
 
                 i += 1
@@ -159,8 +164,10 @@ def echo(bot, update):
                         "(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)", "").replace("(فقط دوبله فارسی)", "").replace(
                         "(دوبله و زیرنویس فارسی + صدای اصلی)", "")
                     bot.send_message(chat_id=id, text=engt)
-
-                    bot.send_message(chat_id=id, text=youtube(str(df['title'])))
+                    info = "در صورت تمایل با فروارد این تریلر به ربات getmediabot@ میتوانید این ویدئو را دانلود کنید "
+                    info+="\n"
+                    info+=youtube(str(df['title'][j]))
+                    bot.send_message(chat_id=id, text=info)
                     update.message.reply_text('************')
 
 
@@ -205,8 +212,11 @@ def echo(bot, update):
                     mes = str(title) + "\n\n" + str(cont)
                     bot.send_message(chat_id=id, text=mes)
                     bot.send_message(chat_id=id, text=photo)
-                    bot.send_message(chat_id=id, text=youtube(title))
-
+                    info = "در صورت تمایل با فروارد این تریلر به ربات getmediabot@ میتوانید این ویدئو را دانلود کنید "
+                    info += "\n"
+                    info += youtube(str(title))
+                    bot.send_message(chat_id=id, text=info)
+                    
    #                 f = open('temp.jpg', 'wb')
     #                f.write(requests.get(photo).content)
    #                 f.close()

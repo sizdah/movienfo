@@ -211,10 +211,10 @@ def echo(bot, update):
                     mes = str(title) + "\n\n" + str(cont)
                     bot.send_message(chat_id=id, text=mes)
                     bot.send_message(chat_id=id, text=photo)
-                    info = "در صورت تمایل با فروارد این تریلر به ربات getmediabot@ میتوانید این ویدئو را دانلود کنید "
-                    info += "\n"
-                    info += youtube(str(title))
+                    info = "در صورت تمایل با فروارد این تریلر به ربات @getmediabot میتوانید این ویدئو را دانلود کنید "
                     bot.send_message(chat_id=id, text=info)
+                    bot.send_message(chat_id=id, text=youtube(str(title)))
+
 
    #                 f = open('temp.jpg', 'wb')
     #                f.write(requests.get(photo).content)

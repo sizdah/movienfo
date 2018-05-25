@@ -19,7 +19,7 @@ df = pandas.read_excel('base.xlsx')
 
 def youtube(q):
     base = "https://www.youtube.com/results?search_query="
-    qstring = str(q)
+    qstring = str(q)+" movie trailer"
     qstring = qstring.replace(" ","+")
 
     r = requests.get(base + qstring)

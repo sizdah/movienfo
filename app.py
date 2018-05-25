@@ -103,13 +103,11 @@ def echo(bot, update):
                     engt += str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=engt)
 
-                    info = "در صورت تمایل با فروارد این تریلر به ربات getmediabot@ میتوانید این ویدئو را دانلود کنید "
+                    info = "در صورت تمایل با فروارد این تریلر به ربات @getmediabot میتوانید این ویدئو را دانلود کنید "
                     info += "\n"
-                    info += youtube(str(df['title'][i]))
+                    vv = youtube(str(df['title'][i]))
                     bot.send_message(chat_id=id, text=info)
-
-                    bot.send_message(chat_id=id, text=info)
-                    update.message.reply_text('************')
+                    bot.send_message(chat_id=id, text=vv)
 
                 i += 1
 
@@ -164,11 +162,12 @@ def echo(bot, update):
                         "(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)", "").replace("(فقط دوبله فارسی)", "").replace(
                         "(دوبله و زیرنویس فارسی + صدای اصلی)", "")
                     bot.send_message(chat_id=id, text=engt)
-                    info = "در صورت تمایل با فروارد این تریلر به ربات getmediabot@ میتوانید این ویدئو را دانلود کنید "
+                    info = "در صورت تمایل با فروارد این تریلر به ربات @getmediabot میتوانید این ویدئو را دانلود کنید "
                     info+="\n"
-                    info+=youtube(str(df['title'][j]))
+                    vv=youtube(str(df['title'][j]))
                     bot.send_message(chat_id=id, text=info)
-                    update.message.reply_text('************')
+                    bot.send_message(chat_id=id, text=vv)
+
 
 
                 j += 1
@@ -216,7 +215,7 @@ def echo(bot, update):
                     info += "\n"
                     info += youtube(str(title))
                     bot.send_message(chat_id=id, text=info)
-                    
+
    #                 f = open('temp.jpg', 'wb')
     #                f.write(requests.get(photo).content)
    #                 f.close()

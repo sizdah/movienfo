@@ -17,6 +17,22 @@ TOKEN = '569768947:AAGeaItAKWl3JolhuMdMhdcG4yRJCttFtZ8'
 
 df = pandas.read_excel('base.xlsx')
 
+def youtube(q):
+    base = "https://www.youtube.com/results?search_query="
+    qstring = str(q)
+    qstring = qstring.replace(" ","+")
+
+    r = requests.get(base + qstring)
+    page = r.content
+    soup = BeautifulSoup(page, 'html.parser')
+
+    vids = soup.findAll('a', attrs={'class': 'yt-uix-tile-link'})
+    v = vids[0]
+    tmp = 'https://www.youtube.com' + v['href']
+    tmp = str(tmp)
+    return tmp
+
+
 def start(bot, update):
     update.message.reply_text('با نوشتن عنوان فارسی یا انگلیسی فیلم میتوانید جستجو کنید')
 
@@ -87,6 +103,7 @@ def echo(bot, update):
                     engt += str(df['details'][i]).replace("(دوبله فارسی + صدای اصلی )","").replace("(دوبله فارسی + صدای اصلی + زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی و زیرنویس انگلیسی)","").replace("(دوبله و زیرنویس فارسی ـ صدای اصلی ندارد)","").replace("(فقط دوبله فارسی)","").replace("(دوبله و زیرنویس فارسی + صدای اصلی)","")
                     bot.send_message(chat_id=id, text=engt)
 
+                    bot.send_message(chat_id=id, text=youtube(str(df['title'])))
                     update.message.reply_text('************')
 
                 i += 1
@@ -143,6 +160,7 @@ def echo(bot, update):
                         "(دوبله و زیرنویس فارسی + صدای اصلی)", "")
                     bot.send_message(chat_id=id, text=engt)
 
+                    bot.send_message(chat_id=id, text=youtube(str(df['title'])))
                     update.message.reply_text('************')
 
 
@@ -187,6 +205,7 @@ def echo(bot, update):
                     mes = str(title) + "\n\n" + str(cont)
                     bot.send_message(chat_id=id, text=mes)
                     bot.send_message(chat_id=id, text=photo)
+                    bot.send_message(chat_id=id, text=youtube(title))
 
    #                 f = open('temp.jpg', 'wb')
     #                f.write(requests.get(photo).content)

@@ -21,26 +21,58 @@ df = pandas.read_excel('base.xlsx')
     ### Import Beautiful Soup
     ### Here, I have the BeautifulSoup folder in the level of this Python script
 def downloadlink(w):
-        try:
-            q = w.replace(" ", "+")
-            base = "http://www.film2movie.us/search/" + q
-            r = requests.get(base)
-            page = r.content
-            soup = BeautifulSoup(page, 'html.parser')
+    fail = 0
+    result = ''
 
-            vv = soup.find_all('div', attrs={'class': 'title'})
+    try:
+        q = w.replace(" ", "+")
+        base = "http://www.film2movie.us/search/" + q
+        r = requests.get(base)
+        page = r.content
+        soup = BeautifulSoup(page, 'html.parser')
 
-            if "مورد درخواستی در این سایت وجود ندارد" in str(vv):
-                return False
+        vv = soup.find_all('div', attrs={'class': 'title'})
 
-            list = []
-            for v in vv:
-                link = v.find_next('a', attrs={'href': re.compile("^http://")})
-                url = link.get('href')
-                list.append(url)
+        if "مورد درخواستی در این سایت وجود ندارد" in str(vv):
+            fail = fail + 1
+
+        list = []
+        for v in vv:
+            link = v.find_next('a', attrs={'href': re.compile("^http://")})
+            url = link.get('href')
+            list.append(url)
+        if fail != 1:
             return str((list[1]))
+    except:
+        pass
+
+    try:
+
+        q2 = w.replace(" ", "+")
+        base2 = "http://dibamoviez.pw/?s=" + q2
+        r2 = requests.get(base2)
+        page2 = r2.content
+        soup2 = BeautifulSoup(page2, 'html.parser')
+
+        vv2 = soup2.find_all('div', attrs={'class': 'search-results'})
+
+        list2 = []
+        for v2 in vv2:
+            link2 = v2.find_next('a', attrs={'href': re.compile("^http://")})
+            url2 = link2.get('href')
+            list2.append(url2)
+        try:
+            result = str((list2[0]))
         except:
+            fail = fail + 1
+
+        if fail < 2:
+            return result
+        else:
             return False
+
+    except:
+        return False
 
 
 def youtube(q):
@@ -135,10 +167,11 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=vv)
 
-                    if downloadlink(str(df['title'][i])):
+                    key = downloadlink(str(df['title'][i]))
+                    if key:
                         downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
                         downinfo+="\n"
-                        downinfo += downloadlink(str(df['title'][i]))
+                        downinfo += key
                         bot.send_message(chat_id=id, text=downinfo)
 
 
@@ -201,13 +234,14 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=vv)
 
-                    if downloadlink(str(df['title'][j])):
+                    key = downloadlink(str(df['title'][j]))
+                    if key:
                         downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
                         downinfo += "\n"
-                        downinfo += downloadlink(str(df['title'][j]))
+                        downinfo += key
                         bot.send_message(chat_id=id, text=downinfo)
 
-                j += 1
+        j += 1
 
         if ecount > 0:
             link = query.replace(" ", "+")
@@ -252,11 +286,14 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=youtube(str(title)))
 
-                    if downloadlink(str(title)):
+                    key = downloadlink(str(title))
+                    if key:
                         downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
                         downinfo += "\n"
-                        downinfo += downloadlink(str(title))
+                        downinfo += key
                         bot.send_message(chat_id=id, text=downinfo)
+
+
 
 
                         #                 f = open('temp.jpg', 'wb')

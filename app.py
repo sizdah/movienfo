@@ -17,6 +17,23 @@ TOKEN = '569768947:AAGeaItAKWl3JolhuMdMhdcG4yRJCttFtZ8'
 
 df = pandas.read_excel('base.xlsx')
 
+def remwithre(text, there=re.compile(re.escape('/&sa')+'.*')):
+  return there.sub('', text)
+
+    ### Import Beautiful Soup
+    ### Here, I have the BeautifulSoup folder in the level of this Python script
+def downloadlink(q):
+  r = requests.get("https://www.google.com/search?q=دانلود فیلم با لینک مستقیم"+q)
+  page = r.content
+
+  soup = BeautifulSoup(page, 'html.parser')
+  m = str(soup.find("h3",attrs={"class":"r"}).a["href"])
+  m = m.replace("/url?q=","")
+  rest = remwithre(m)
+  return rest
+  #a = soup.find_all("h3" , {"class":"r"})[0]#.find_next('a', attrs={'href': re.compile("^https://")})
+
+
 def youtube(q):
     base = "https://www.youtube.com/results?search_query="
     qstring = str(q)+" movie trailer"
@@ -109,6 +126,12 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=vv)
 
+                    downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
+                    downinfo+="\n"
+                    downinfo += downloadlink(str(df['title'][i]))
+                    bot.send_message(chat_id=id, text=downinfo)
+
+
                 i += 1
 
         j = 0
@@ -168,7 +191,10 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=vv)
 
-
+                    downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
+                    downinfo += "\n"
+                    downinfo += downloadlink(str(df['title'][j]))
+                    bot.send_message(chat_id=id, text=downinfo)
 
                 j += 1
 
@@ -215,8 +241,13 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=youtube(str(title)))
 
+                    downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
+                    downinfo += "\n"
+                    downinfo += downloadlink(str(title))
+                    bot.send_message(chat_id=id, text=downinfo)
 
-   #                 f = open('temp.jpg', 'wb')
+
+                    #                 f = open('temp.jpg', 'wb')
     #                f.write(requests.get(photo).content)
    #                 f.close()
     #                bot.send_photo(chat_id=id, text="temp.jpg")

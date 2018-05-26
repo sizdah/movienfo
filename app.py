@@ -135,7 +135,7 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=vv)
 
-                    if downloadlink(query):
+                    if downloadlink(str(df['title'][i])):
                         downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
                         downinfo+="\n"
                         downinfo += downloadlink(str(df['title'][i]))
@@ -201,7 +201,7 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=vv)
 
-                    if downloadlink(query):
+                    if downloadlink(str(df['title'][j])):
                         downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
                         downinfo += "\n"
                         downinfo += downloadlink(str(df['title'][j]))
@@ -252,7 +252,7 @@ def echo(bot, update):
                     bot.send_message(chat_id=id, text=info)
                     bot.send_message(chat_id=id, text=youtube(str(title)))
 
-                    if downloadlink(query):
+                    if downloadlink(str(title)):
                         downinfo = "لینک زیر برای دانلود فیلم پیدا شد"
                         downinfo += "\n"
                         downinfo += downloadlink(str(title))

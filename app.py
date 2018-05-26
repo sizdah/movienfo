@@ -113,6 +113,7 @@ def echo(bot, update):
 
         # print the column names
         i = 0
+        j=i
         ecount = 0
         fcount = 0
 
@@ -177,7 +178,7 @@ def echo(bot, update):
 
                 i += 1
 
-        j = 0
+
         for item in df['titlef']:
                 if query in str(item):
                     fcount += 1
@@ -241,7 +242,7 @@ def echo(bot, update):
                         downinfo += key
                         bot.send_message(chat_id=id, text=downinfo)
 
-        j += 1
+                j += 1
 
         if ecount > 0:
             link = query.replace(" ", "+")

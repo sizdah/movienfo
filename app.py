@@ -69,7 +69,29 @@ def downloadlink(w):
         if fail < 2:
             return result
         else:
+            pass
+
+        try:
+            q3 = w.replace(" ", "+")
+            base3 = "http://www.avadl.me/?s=" + q3
+            r3 = requests.get(base3)
+            page3 = r3.content
+            soup3 = BeautifulSoup(page3, 'html.parser')
+            vv3 = soup3.find_all('h2')
+            try:
+                link3 = vv3[1].find_next('a', attrs={'href': re.compile("^http://")})
+                url3 = link3.get('href')
+                result = url3
+            except:
+                fail = fail + 1
+
+            if fail < 3:
+                return result
+            else:
+                return False
+        except:
             return False
+
 
     except:
         return False

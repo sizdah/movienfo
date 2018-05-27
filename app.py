@@ -25,28 +25,6 @@ def downloadlink(w):
     result = ''
 
     try:
-        q = w.replace(" ", "+")
-        base = "http://www.film2movie.us/search/" + q
-        r = requests.get(base)
-        page = r.content
-        soup = BeautifulSoup(page, 'html.parser')
-
-        vv = soup.find_all('div', attrs={'class': 'title'})
-
-        if "مورد درخواستی در این سایت وجود ندارد" in str(vv):
-            fail = fail + 1
-
-        list = []
-        for v in vv:
-            link = v.find_next('a', attrs={'href': re.compile("^http://")})
-            url = link.get('href')
-            list.append(url)
-        if fail != 1:
-            return str((list[1]))
-    except:
-        pass
-
-    try:
 
         q2 = w.replace(" ", "+")
         base2 = "http://dibamoviez.pw/?s=" + q2
@@ -66,12 +44,41 @@ def downloadlink(w):
         except:
             fail = fail + 1
 
-        if fail < 2:
+        if fail != 1:
             return result
         else:
             pass
+    except:
+        pass
 
-        try:
+
+    try:
+        q = w.replace(" ", "+")
+        base = "http://www.film2movie.us/search/" + q
+        r = requests.get(base)
+        page = r.content
+        soup = BeautifulSoup(page, 'html.parser')
+
+        vv = soup.find_all('div', attrs={'class': 'title'})
+
+        if "مورد درخواستی در این سایت وجود ندارد" in str(vv):
+            fail = fail + 1
+
+        list = []
+        for v in vv:
+            link = v.find_next('a', attrs={'href': re.compile("^http://")})
+            url = link.get('href')
+            list.append(url)
+        if fail < 2:
+            return str((list[1]))
+    except:
+        pass
+
+
+
+
+    try:
+
             q3 = w.replace(" ", "+")
             base3 = "http://www.avadl.me/?s=" + q3
             r3 = requests.get(base3)
@@ -87,16 +94,32 @@ def downloadlink(w):
 
             if fail < 3:
                 return result
-            else:
-                return False
+
+    except:
+        pass
+
+    try:
+        k = w.replace(" ", "+")
+        cinema = "https://30nama.ws/?s=" + k
+        r = requests.get(cinema)
+        c = r.content
+
+        soup = BeautifulSoup(c, "html.parser")
+
+        data = soup.find_all("article", {"class": "post"})
+        l=[]
+        for item in data:
+            dl = item.find_next("a", attrs={'href': re.compile("^https://")})
+            fdl = dl.get('href')
+            l.append(fdl)
+            break
+        try:
+            return l[0]
         except:
             return False
 
-
     except:
         return False
-
-
 def youtube(q):
     base = "https://www.youtube.com/results?search_query="
     qstring = str(q)+" movie trailer"
@@ -275,10 +298,10 @@ def echo(bot, update):
             bot.send_message(chat_id=id, text=brows2)
         else:
             if fcount>0:
-                link = q.replace(" ", "+")
+                link = query.replace(" ", "+")
                 brows = "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + link + "&s=all"
                 bot.send_message(chat_id=id, text=brows)
-                link2 = q.replace(" ", "+")
+                link2 = query.replace(" ", "+")
                 brows2 = "https://www.rottentomatoes.com/search/?search=" + link2
                 bot.send_message(chat_id=id, text=brows2)
         if ecount+fcount==0:

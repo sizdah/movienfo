@@ -100,7 +100,7 @@ def downloadlink(w):
 
     try:
         k = w.replace(" ", "+")
-        cinema = "https://30nama.ws/?s=" + k
+        cinema = "https://30nama.fun/?s=" + k
         r = requests.get(cinema)
         c = r.content
 
@@ -307,7 +307,7 @@ def echo(bot, update):
         if ecount+fcount==0:
 
             k = query.replace(" ","+")
-            cinema = "https://30nama.ws/?s="+k
+            cinema = "https://30nama.fun/?s="+k
             r = requests.get(cinema)
             c = r.content
 

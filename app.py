@@ -27,7 +27,7 @@ def downloadlink(w):
     try:
 
         q2 = w.replace(" ", "+")
-        base2 = "http://dibamoviez.pw/?s=" + q2
+        base2 = "http://dibamoviez.top/?s=" + q2
         r2 = requests.get(base2)
         page2 = r2.content
         soup2 = BeautifulSoup(page2, 'html.parser')

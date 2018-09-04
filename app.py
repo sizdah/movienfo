@@ -27,7 +27,7 @@ def downloadlink(w):
     try:
 
         q2 = w.replace(" ", "+")
-        base2 = "http://dibamoviez.top/?s=" + q2
+        base2 = "https://dibamoviez.top/?s=" + q2
         r2 = requests.get(base2)
         page2 = r2.content
         soup2 = BeautifulSoup(page2, 'html.parser')
@@ -36,7 +36,7 @@ def downloadlink(w):
 
         list2 = []
         for v2 in vv2:
-            link2 = v2.find_next('a', attrs={'href': re.compile("^http://")})
+            link2 = v2.find_next('a', attrs={'href': re.compile("^https://")})
             url2 = link2.get('href')
             list2.append(url2)
         try:
@@ -50,7 +50,6 @@ def downloadlink(w):
             pass
     except:
         pass
-
 
     try:
         q = w.replace(" ", "+")

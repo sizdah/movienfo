@@ -99,7 +99,7 @@ def downloadlink(w):
 
     try:
         k = w.replace(" ", "+")
-        cinema = "https://30nama.fun/?s=" + k
+        cinema = "https://30nama.win/?s=" + k
         r = requests.get(cinema)
         c = r.content
 

@@ -24,32 +24,32 @@ def downloadlink(w):
     fail = 0
     result = ''
 
-    try:
+   # try:
 
-        q2 = w.replace(" ", "+")
-        base2 = "https://dibamoviez.top/?s=" + q2
-        r2 = requests.get(base2)
-        page2 = r2.content
-        soup2 = BeautifulSoup(page2, 'html.parser')
+#        q2 = w.replace(" ", "+")
+  #      base2 = "https://dibamoviez.top/?s=" + q2
+   #     r2 = requests.get(base2)
+    #    page2 = r2.content
+     #   soup2 = BeautifulSoup(page2, 'html.parser')
 
-        vv2 = soup2.find_all('div', attrs={'class': 'search-results'})
+     #   vv2 = soup2.find_all('div', attrs={'class': 'search-results'})
 
-        list2 = []
-        for v2 in vv2:
-            link2 = v2.find_next('a', attrs={'href': re.compile("^https://")})
-            url2 = link2.get('href')
-            list2.append(url2)
-        try:
-            result = str((list2[0]))
-        except:
-            fail = fail + 1
+      #  list2 = []
+      #  for v2 in vv2:
+       #     link2 = v2.find_next('a', attrs={'href': re.compile("^https://")})
+        #    url2 = link2.get('href')
+         #   list2.append(url2)
+        #try:
+         #   result = str((list2[0]))
+        #except:
+        #    fail = fail + 1
 
-        if fail != 1:
-            return result
-        else:
-            pass
-    except:
-        pass
+       # if fail != 1:
+         #   return result
+        #else:
+          #  pass
+    #except:
+       # pass
 
     try:
         q = w.replace(" ", "+")
